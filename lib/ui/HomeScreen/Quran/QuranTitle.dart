@@ -19,14 +19,20 @@ class QuranTitle extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Text("$number",style: TextStyle(fontSize: 18),),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text("$number",style: Theme.of(context).textTheme.titleLarge,),
+                  ),
                 ],
               ),
               Column(
                 children: [
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 25),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami/ui/theme.dart';
 
 class QuranDetails extends StatefulWidget {
   QuranDetails({Key? key}) : super(key: key);
@@ -21,9 +22,9 @@ class _QuranDetailsState extends State<QuranDetails> {
     }
     ;
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
+              image: AssetImage(MyThemeData.getBackgroungImage()),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
@@ -40,7 +41,7 @@ class _QuranDetailsState extends State<QuranDetails> {
                       child: Text(
                         versesList[index],
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 22),
+                        style: TextStyle(fontSize: 22,color:Theme.of(context).colorScheme.onPrimary),
                       ),
                     ),
                     itemCount: versesList.length,
