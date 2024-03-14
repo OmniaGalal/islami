@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:islami/ui/HomeScreen/Hadeth/Hadeth.dart';
 import 'package:islami/ui/HomeScreen/Quran/Quran.dart';
-import 'package:islami/ui/HomeScreen/Radio.dart';
+import 'package:islami/ui/HomeScreen/Radio/Radio.dart';
 import 'package:islami/ui/HomeScreen/sebha/Sebha.dart';
 import 'package:islami/ui/colors.dart';
+import 'package:islami/ui/theme.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -26,9 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
+              image: AssetImage(
+                  MyThemeData.getBackgroungImage()
+              ),
               fit: BoxFit.fill)),
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
@@ -38,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {});
           },
           //backgroundColor: Color(0xFFB7935F),
-          selectedItemColor: Colors.black,
+          selectedItemColor: MyThemeData.getLabelColor(),
           items: [
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.primary,

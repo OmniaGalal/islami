@@ -248,19 +248,19 @@ class QuranScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 1,
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("عدد الايات",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-              Text("اسم السورة",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold)),
+              Text("عدد الايات",style: Theme.of(context).textTheme.titleMedium,),
+              Text("اسم السورة",style: Theme.of(context).textTheme.titleMedium),
             ],
           ),
           Container(
             width: double.infinity,
             height: 1,
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           Expanded(
             flex: 3,
@@ -270,7 +270,7 @@ class QuranScreen extends StatelessWidget {
               separatorBuilder:(context, index) => Container(
                 width: double.infinity,
                 height: 1,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               itemBuilder: (context, index) => Column(
                 children: [

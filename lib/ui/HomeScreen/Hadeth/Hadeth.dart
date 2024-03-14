@@ -27,7 +27,7 @@ class _HadethScreenState extends State<HadethScreen> {
                   separatorBuilder: (context, index) => Container(
                     width: double.infinity,
                     height: 1,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -40,7 +40,7 @@ class _HadethScreenState extends State<HadethScreen> {
                       child: Text(
                         AllHadethList[index].title,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 22),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                   ),
