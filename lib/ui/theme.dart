@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyThemeData {
-  static bool darkk = false;
+  static bool darkk = true;
   static const Color PrimaryDark = Color(0xFF141A2E);
   static const Color SecondaryDark = Color(0xFFFACC1D);
   static const Color Blackk = Colors.black;
