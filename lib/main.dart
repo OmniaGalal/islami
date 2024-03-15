@@ -4,7 +4,8 @@ import 'package:islami/ui/HomeScreen/Quran/QuranDetails.dart';
 import 'package:islami/ui/HomeScreen/home.dart';
 import 'package:islami/ui/Splash/splash.dart';
 import 'package:islami/ui/theme.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: MyThemeData.LightTheme,
       darkTheme: MyThemeData.DarkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       initialRoute: HomeScreen.routeName,
@@ -29,6 +30,17 @@ class MyApp extends StatelessWidget {
         QuranDetails.routaName: (context) => QuranDetails(),
         HadethDetails.routeName:(context) => HadethDetails()
       },
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'),
+        Locale('ar'),
+      ],
+      locale: const Locale('ar'),
     );
   }
 }
