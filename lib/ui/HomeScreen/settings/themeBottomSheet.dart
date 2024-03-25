@@ -20,6 +20,8 @@ class ThemeBottomSheet extends StatelessWidget {
               InkWell(
                 onTap: (){
                   settingsProvider.changeTheme(ThemeMode.light);
+                  Navigator.pop(context);
+
                 },
                   child: settingsProvider.theme==ThemeMode.light?
                   selectedTheme(context, "${AppLocalizations.of(context)!.light}"):
@@ -29,6 +31,8 @@ class ThemeBottomSheet extends StatelessWidget {
               InkWell(
                 onTap: (){
                   settingsProvider.changeTheme(ThemeMode.dark);
+                  Navigator.pop(context);
+
                 },
                   child:settingsProvider.theme==ThemeMode.dark?
                       selectedTheme(context, "${AppLocalizations.of(context)!.dark}"):
