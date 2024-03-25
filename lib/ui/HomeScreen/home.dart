@@ -3,9 +3,13 @@ import 'package:islami/ui/HomeScreen/Hadeth/Hadeth.dart';
 import 'package:islami/ui/HomeScreen/Quran/Quran.dart';
 import 'package:islami/ui/HomeScreen/Radio/Radio.dart';
 import 'package:islami/ui/HomeScreen/sebha/Sebha.dart';
+import 'package:islami/ui/HomeScreen/settings/settingsTab.dart';
 import 'package:islami/ui/colors.dart';
 import 'package:islami/ui/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/settingProvider.dart';
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
   static const String routeName = "Home";
@@ -22,15 +26,18 @@ class _HomeScreenState extends State<HomeScreen> {
     HadethScreen(),
     SebhaScreen(),
     RadioScreen(),
+    SettingsScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
+
     return Container(
       decoration:  BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                  MyThemeData.getBackgroungImage()
+                  settingsProvider.getBackgroungImage()
               ),
               fit: BoxFit.fill)),
       child: Scaffold(
@@ -41,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {});
           },
           //backgroundColor: Color(0xFFB7935F),
-          selectedItemColor: MyThemeData.getLabelColor(),
+          selectedItemColor: settingsProvider.getLabelColor(),
           items: [
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.primary,
@@ -59,6 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 icon: const ImageIcon(AssetImage("assets/images/radio.png")),
                 label: AppLocalizations.of(context)!.radioTab),
+            BottomNavigationBarItem(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                icon: Icon(Icons.settings),
+                label: AppLocalizations.of(context)!.settings),
           ],
         ),
         appBar: AppBar(
