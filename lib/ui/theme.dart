@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:islami/ui/provider/settingProvider.dart';
+import 'package:provider/provider.dart';
 
 class MyThemeData {
-  static bool darkk = true;
+
   static const Color PrimaryDark = Color(0xFF141A2E);
   static const Color SecondaryDark = Color(0xFFFACC1D);
   static const Color Blackk = Colors.black;
@@ -12,6 +14,7 @@ class MyThemeData {
       textTheme: TextTheme(
         titleLarge: TextStyle(
           fontSize: 20,
+          color: Blackk
         ),
         titleMedium: TextStyle(
             color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
@@ -89,23 +92,5 @@ class MyThemeData {
       onSecondary: Blackk,
     ),
   );
-  static Color getLabelColor() {
-    return darkk ? Color(0xFFFACC1D) : Color(0xFF090909);
-  }
 
-  static String getBackgroungImage() {
-    return darkk ? "assets/images/bg_dark.png" : "assets/images/background.png";
-  }
-
-  static String getSebhaHeadImage() {
-    return darkk
-        ? "assets/images/head of seb7a (1).png"
-        : "assets/images/head_sebha.png";
-  }
-
-  static String getSebhaBodyImage() {
-    return darkk
-        ? "assets/images/body of seb7a (1).png"
-        : "assets/images/body_sebha.png";
-  }
 }

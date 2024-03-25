@@ -3,5 +3,10 @@
 "quranTab":"القرآْْْن",
 "hadethTab":"الحديث",
 "sebhaTab":"التسبيح",
-"radioTab":"الاذاعة"
+"radioTab":"الاذاعة",
+"settings":"الإعدادات",
+"language":"اللغة",
+"theme":"السطوع",
+"dark":"ليلي",
+"light":"نهاري"
 }

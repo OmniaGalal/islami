@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami/ui/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/settingProvider.dart';
 
 class SebhaScreen extends StatefulWidget {
   @override
@@ -18,6 +21,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
   int counter=0;
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -30,7 +34,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                 padding: const EdgeInsets.all(30.0),
                 child: Center(
                     child: Image(
-                  image: AssetImage(MyThemeData.getSebhaHeadImage()),
+                  image: AssetImage(settingsProvider.getSebhaHeadImage()),
                   width: 60,
                 )),
               ),
@@ -53,7 +57,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                       setState(() {});
                     },
                     child: Image(
-                      image: AssetImage(MyThemeData.getSebhaBodyImage()),
+                      image: AssetImage(settingsProvider.getSebhaBodyImage()),
                       width: 210,
                     ),
                   ),
