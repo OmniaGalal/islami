@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:islami/ui/HomeScreen/Hadeth/Hadeth.dart';
 import 'package:islami/ui/HomeScreen/Quran/Quran.dart';
-import 'package:islami/ui/HomeScreen/Radio.dart';
+import 'package:islami/ui/HomeScreen/Radio/Radio.dart';
 import 'package:islami/ui/HomeScreen/sebha/Sebha.dart';
+import 'package:islami/ui/HomeScreen/settings/settingsTab.dart';
 import 'package:islami/ui/colors.dart';
+import 'package:islami/ui/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/settingProvider.dart';
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
   static const String routeName = "Home";
@@ -21,14 +26,19 @@ class _HomeScreenState extends State<HomeScreen> {
     HadethScreen(),
     SebhaScreen(),
     RadioScreen(),
+    SettingsScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
+
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
+              image: AssetImage(
+                  settingsProvider.getBackgroungImage()
+              ),
               fit: BoxFit.fill)),
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
@@ -38,28 +48,32 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {});
           },
           //backgroundColor: Color(0xFFB7935F),
-          selectedItemColor: Colors.black,
+          selectedItemColor: settingsProvider.getLabelColor(),
           items: [
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                icon: const ImageIcon(AssetImage("assets/images/quran.png")),
-                label: "Quran"),
+                icon:  ImageIcon(AssetImage("assets/images/quran.png")),
+                label: AppLocalizations.of(context)!.quranTab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 icon: const ImageIcon(AssetImage("assets/images/hadeth.png")),
-                label: "Hadeth"),
+                label: AppLocalizations.of(context)!.hadethTab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 icon: const ImageIcon(AssetImage("assets/images/sebha.png")),
-                label: "Sebha"),
+                label: AppLocalizations.of(context)!.sebhaTab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 icon: const ImageIcon(AssetImage("assets/images/radio.png")),
-                label: "Radio"),
+                label: AppLocalizations.of(context)!.radioTab),
+            BottomNavigationBarItem(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                icon: Icon(Icons.settings),
+                label: AppLocalizations.of(context)!.settings),
           ],
         ),
         appBar: AppBar(
-          title: const Text("Islami"),
+          title:  Text("${AppLocalizations.of(context)!.appTitle}"),
         ),
         body: items[SelectedIndx],
       ),

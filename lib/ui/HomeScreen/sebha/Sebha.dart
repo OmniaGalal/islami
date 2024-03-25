@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islami/ui/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/settingProvider.dart';
 
 class SebhaScreen extends StatefulWidget {
   @override
@@ -17,6 +21,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
   int counter=0;
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -29,7 +34,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                 padding: const EdgeInsets.all(30.0),
                 child: Center(
                     child: Image(
-                  image: AssetImage("assets/images/head_sebha.png"),
+                  image: AssetImage(settingsProvider.getSebhaHeadImage()),
                   width: 60,
                 )),
               ),
@@ -52,7 +57,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                       setState(() {});
                     },
                     child: Image(
-                      image: AssetImage("assets/images/body_sebha.png"),
+                      image: AssetImage(settingsProvider.getSebhaBodyImage()),
                       width: 210,
                     ),
                   ),
@@ -74,7 +79,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                 child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                        color: Color(0xAAB7935F),
+                        color: Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       "$counter",
@@ -86,11 +91,11 @@ class _SebhaScreenState extends State<SebhaScreen> {
                   child: Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: Color(0xFFB7935F),
+                          color: Theme.of(context).colorScheme.secondary,
                           borderRadius: BorderRadius.circular(20)),
                       child: Text(
                         "${text[TasbehNumber]}",
-                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        style: TextStyle(fontSize:25,color: Theme.of(context).colorScheme.onSecondary),
                       ))),
             ],
           )

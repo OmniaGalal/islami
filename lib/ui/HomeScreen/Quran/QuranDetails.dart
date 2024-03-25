@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami/ui/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/settingProvider.dart';
 
 class QuranDetails extends StatefulWidget {
   QuranDetails({Key? key}) : super(key: key);
@@ -14,6 +18,8 @@ class _QuranDetailsState extends State<QuranDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
+
     QuranArguments args =
         ModalRoute.of(context)?.settings.arguments as QuranArguments;
     if (versesList.isEmpty) {
@@ -21,9 +27,9 @@ class _QuranDetailsState extends State<QuranDetails> {
     }
     ;
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
+              image: AssetImage(settingsProvider.getBackgroungImage()),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
@@ -40,7 +46,7 @@ class _QuranDetailsState extends State<QuranDetails> {
                       child: Text(
                         versesList[index],
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 22),
+                        style: TextStyle(fontSize: 22,color:Theme.of(context).colorScheme.onPrimary),
                       ),
                     ),
                     itemCount: versesList.length,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami/ui/HomeScreen/Hadeth/Hadeth.dart';
+import 'package:islami/ui/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/settingProvider.dart';
 
 class HadethDetails extends StatelessWidget {
   HadethDetails();
@@ -7,14 +11,15 @@ class HadethDetails extends StatelessWidget {
   static const String routeName = "hadeth_details";
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
+
     Hadeth args = ModalRoute.of(context)?.settings.arguments as Hadeth;
     return Container(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/background.png"),
+                image: AssetImage(settingsProvider.getBackgroungImage()),
                 fit: BoxFit.fill)),
         child: Scaffold(
-
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -27,13 +32,19 @@ class HadethDetails extends StatelessWidget {
                     Text(
                       "${args.title}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).colorScheme.onPrimary),
                     ),
-                    Divider(color: Theme.of(context).colorScheme.primary,thickness: 2),
+                    Divider(
+                        color: Colors.white,
+                        thickness: 2),
                     Text(
                       "${args.content}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Theme.of(context).colorScheme.onPrimary),
                     ),
                   ],
                 ),

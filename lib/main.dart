@@ -3,9 +3,16 @@ import 'package:islami/ui/HomeScreen/Hadeth/hadeth_details.dart';
 import 'package:islami/ui/HomeScreen/Quran/QuranDetails.dart';
 import 'package:islami/ui/HomeScreen/home.dart';
 import 'package:islami/ui/Splash/splash.dart';
+import 'package:islami/ui/provider/settingProvider.dart';
+import 'package:islami/ui/theme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => SettingsProvider(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,37 +21,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingsProvider>(context);
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: TextTheme(titleLarge: TextStyle(fontSize: 20,)),
-        appBarTheme: const AppBarTheme(
-            titleTextStyle: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent),
-        scaffoldBackgroundColor: Colors.transparent,
-        cardTheme: CardTheme(
-            color: Color(0xFFF8F8F8),
-            elevation: 20,
-            surfaceTintColor: Colors.transparent),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedIconTheme: IconThemeData(
-            color: Colors.black,
-            size: 32,
-          ),
-          unselectedIconTheme: IconThemeData(color: Colors.white, size: 30),
-          // selectedItemColor: Colors.black,
-          // unselectedItemColor: Colors.white
-        ),
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFFB7935F),
-            primary: const Color(0xFFB7935F)),
-      ),
+      theme: MyThemeData.LightTheme,
+      darkTheme: MyThemeData.DarkTheme,
+      themeMode: settingsProvider.theme,
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       initialRoute: HomeScreen.routeName,
@@ -52,8 +34,19 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => const SplashScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         QuranDetails.routaName: (context) => QuranDetails(),
-        HadethDetails.routeName:(context) => HadethDetails()
+        HadethDetails.routeName: (context) => HadethDetails()
       },
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'),
+        Locale('ar'),
+      ],
+      locale:  Locale(settingsProvider.SelectedLanguage),
     );
   }
 }
